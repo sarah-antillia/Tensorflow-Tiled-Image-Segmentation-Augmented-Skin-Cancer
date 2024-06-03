@@ -23,7 +23,7 @@ In this experiment, we employed the following strategy:<br>
 <b>
 <br>
 1. We trained and validated a TensorFlow UNet model using the Tiled-Skin-Cancer-ImageMask-Dataset, which was tiledly-split to 512x512 pixels.<br>
-2. We applied the Tiled-Image Segmentation inference method to predict the segmentation regions for a test image 
+2. We applied the Tiled-Image Segmentation inference method to predict the skin-cancer regions for the test images 
 with a resolution of 4K or 6K pixels. 
 <br><br>
 </b>  
@@ -329,12 +329,13 @@ We added the following Python scripts to this repository for the epoch change in
 <br>
 By using these callbacks, on every epoch_change, the inference and tile-inference procedures can be called
  for an image in <b>mini_test</b> folder.<br><br>
-<b>Epoch_change_inference</b><br>
+<b>Epoch_change_inference output</b><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/epoch_change_infer.png" width="1024" height="auto"><br>
-<b>Epoch_change_tiled_inference</b><br>
+
+<b>Epoch_change_tiled_inference output</b><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/epoch_change_tiledinfer.png"  width="1024" height="auto"><br>
 <br>
-These inferred masks on_epch_change will be helpful to examine the parameters for training.<br>
+These inferred masks outputs on_epch_change will be helpful to examine the parameters for training of the configuration file.<br>
 <br>  
 The training process has stopped at epoch 20.<br><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/train_console_output_at_epoch_20.png" width="720" height="auto"><br>
