@@ -1,4 +1,4 @@
-<h2>Tensorflow-Tiled-Image-Segmentation-Skin-Cancer (2024/06/04)</h2>
+<h2>Tensorflow-Tiled-Image-Segmentation-Augmented-Skin-Cancer (2024/06/04)</h2>
 
 This is an experimental Tiled Image Segmentation project for Skin-Cancer based on
 the <a href="https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-API">Tensorflow-Image-Segmentation-API</a>, and
