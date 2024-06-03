@@ -305,8 +305,11 @@ distortions           = [0.03,]
 In this configuration file above, we added the following parameters to enable <b>epoch_change_infer</b> and 
 <b>epoch_change_tiledinfer</b> callbacks in [train] section.<br>
 We added the following Python scripts to this repository for the epoch change inferences:<br>
+<li> <a href="./src/Inferencer.py">Inferencer.py</a> </li>
+<li> <a href="./src/TiledInferencer.py">TiledInferencer.py</a> </li>
 <li> <a href="./src/EpochChangeInferencer.py">EpochChangeInferencer.py</a> </li>
 <li> <a href="./src/EpochChangeTiledInferencer.py">EpochChangeTiledInferencer.py</a> </li>
+
 <br>
 By using these callbacks, on every epoch_change, the inference and tile-inference procedures can be called
  for an image in <b>mini_test</b> folder.<br><br>
