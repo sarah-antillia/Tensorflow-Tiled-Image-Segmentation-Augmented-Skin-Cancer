@@ -315,7 +315,7 @@ By using these callbacks, on every epoch_change, the inference and tile-inferenc
  for an image in <b>mini_test</b> folder.<br><br>
 <b>Epoch_change_inference</b><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/epoch_change_infer.png" width="1024" height="auto"><br>
-<b>Epoch_change_tiled-inference</b><br>
+<b>Epoch_change_tiled_inference</b><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/epoch_change_tiledinfer.png"  width="1024" height="auto"><br>
 <br>
 These inferred masks on_epch_change will be helpful to examine the parameters for training.<br>
