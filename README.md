@@ -16,7 +16,6 @@ ImageMask-Dataset</a></li>
 This is the fourth example to apply the strategy to a segmentation model for Skin-Cancer.
 
 As mentioned in <a href="https://github.com/sarah-antillia/Tiled-ImageMask-Dataset-Skin-Cancer">Tiled-ImageMask-Dataset-Skin-Cancer</a>, the pixel-size of the original images and masks in validation and test dataset of 
-ISIC Challenge Datasets 2017
 <a href="https://challenge.isic-archive.com/data/">ISIC Challenge Datasets 2017</a> is very large from 1K to 6K, which is too large to use for a training of an ordinary segmentation model.<br>
 Therefore, Tiled-Image-Segmentation method may be effective to infer the skin cancer regions for the large images.<br>
 <br> 
