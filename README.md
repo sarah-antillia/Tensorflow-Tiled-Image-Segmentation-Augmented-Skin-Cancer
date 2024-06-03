@@ -304,6 +304,22 @@ distortions           = [0.03,]
 
 In this configuration file above, we added the following parameters to enable <b>epoch_change_infer</b> and 
 <b>epoch_change_tiledinfer</b> callbacks in [train] section.<br>
+<pre>
+[train]
+;Inference execution flag on epoch_changed
+epoch_change_infer     = True
+; Output dir to save the infered masks on epoch_changed
+epoch_change_infer_dir =  "./epoch_change_infer"
+
+;Tiled-inference execution flag on epoch_changed
+epoch_change_tiledinfer     = True
+; Output dir to save the tiled-infered masks on epoch_changed
+epoch_change_tiledinfer_dir =  "./epoch_change_tiledinfer"
+
+; The number of the images to be inferred on epoch_changed.
+num_infer_images       = 1
+</pre>
+
 We added the following Python scripts to this repository for the epoch change inferences:<br>
 <li> <a href="./src/Inferencer.py">Inferencer.py</a> </li>
 <li> <a href="./src/TiledInferencer.py">TiledInferencer.py</a> </li>
