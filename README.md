@@ -29,7 +29,7 @@ with a resolution of 4K or 6K pixels.
 <br><br>
 </b>  
  Please note that <a href="https://drive.google.com/file/d/1XKNJOfi2_n8ldmtgT_NIex4d0PTq92PR/view">
- Tiled-Skin-Cancer-ImageMask-Dataset-X.zip</a> contains two type of image and mask:
+ Tiled-Skin-Cancer-ImageMask-Dataset-X.zip</a> contains two types of images and masks:
  <br> 
 1. Tiledly-split to 512x512 image and mask  files.<br>
 2. Size-reduced to 512x512 image and mask files.<br>
