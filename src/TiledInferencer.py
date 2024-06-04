@@ -63,10 +63,10 @@ class TiledInferencer(Inferencer):
     self.black    = self.config.get(ConfigParser.SEGMENTATION, "black",    dvalue="black")
     self.white    = self.config.get(ConfigParser.SEGMENTATION, "white",    dvalue="white")
     self.blursize = self.config.get(ConfigParser.SEGMENTATION, "blursize", dvalue=None)
+    verbose       = not  self.on_epoch_change 
+    self.writer   = GrayScaleImageWriter(colorize=self.colorize, black=self.black, white=self.white, verbose=verbose)
 
-    self.writer   = GrayScaleImageWriter(colorize=self.colorize, black=self.black, white=self.white, verbose=False)
-
-    self.maskcolorizer = MaskColorizedWriter(self.config, verbose=False)
+    self.maskcolorizer = MaskColorizedWriter(self.config, verbose=verbose)
     self.mask_colorize = self.config.get(ConfigParser.INFER, "mask_colorize", dvalue=False)
     self.MARGIN       = self.config.get(ConfigParser.TILEDINFER, "overlapping", dvalue=0)
     self.bitwise_blending    = self.config.get(ConfigParser.TILEDINFER, "bitwise_blending", dvalue=True)
