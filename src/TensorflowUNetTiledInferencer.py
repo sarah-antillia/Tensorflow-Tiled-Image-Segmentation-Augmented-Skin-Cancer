@@ -24,17 +24,10 @@ os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 os.environ["TF_ENABLE_GPU_GARBAGE_COLLECTION"]="true"
 
 import sys
-import shutil
-import numpy as np
 
-import cv2
-from PIL import Image
-import glob
 import traceback
 
 from ConfigParser import ConfigParser
-from ImageMaskDataset import ImageMaskDataset
-from NormalizedImageMaskDataset import NormalizedImageMaskDataset
 
 from TensorflowUNet import TensorflowUNet
 from TensorflowAttentionUNet import TensorflowAttentionUNet 
@@ -54,20 +47,11 @@ from TensorflowUNetInferencer import TensorflowUNetInferencer
 from TensorflowModelLoader import TensorflowModelLoader
 from TiledInferencer import TiledInferencer
 
-class TensorflowUNetTiledInferencer(TensorflowUNetInferencer):
+class TensorflowUNetTiledInferencer:
 
   def __init__(self, config_file):
-    super().__init__(config_file)
-
     print("=== TensorflowUNetTiledInferencer.__init__ config?file {}".format(config_file))
-    #self.config = ConfigParser(config_file)
-    self.images_dir = self.config.get(ConfigParser.TILEDINFER, "images_dir")
-    self.output_dir = self.config.get(ConfigParser.TILEDINFER, "output_dir")
-    self.tiledinfer_binarize =self.config.get(ConfigParser.TILEDINFER,   "binarize", dvalue=True) 
-    print("--- tiledinfer binarize {}".format(self.tiledinfer_binarize))
-    self.tiledinfer_threshold = self.config.get(ConfigParser.TILEDINFER, "threshold", dvalue=60)
-    self.sharpening = self.config.get(ConfigParser.TILEDINFER, "sharpening", dvalue=False)
-
+    self.config = ConfigParser(config_file)
     # Create a UNetMolde and compile
     #model          = TensorflowUNet(config_file)
     ModelClass = eval(self.config.get(ConfigParser.MODEL, "model", dvalue="TensorflowUNet"))
@@ -76,15 +60,10 @@ class TensorflowUNetTiledInferencer(TensorflowUNetInferencer):
     self.unet  = ModelClass(config_file) 
     print("--- self.unet {}".format(self.unet))
     self.model = self.unet.model
-    print("--- self.model {}".format(self.model))
-    self.model_loader = TensorflowModelLoader(config_file)
 
     # 2024/04/22 Load Model
     self.loader = TensorflowModelLoader(config_file)
     self.loader.load(self.model)
-
-    if not os.path.exists(self.images_dir):
-      raise Exception("Not found " + self.images_dir)
 
     self.tiled_inferencer = TiledInferencer(self.model, config_file)
     print("=== Created TiledInferencer")

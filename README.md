@@ -1,5 +1,7 @@
-<h2>Tensorflow-Tiled-Image-Segmentation-Augmented-Skin-Cancer (2024/06/04)</h2>
-
+<h2>Tensorflow-Tiled-Image-Segmentation-Augmented-Skin-Cancer (Updated: 2024/06/09)</h2>
+<li>2024/06/09: Modified <a href="./src/TensorflowUNetTiledInferencer.py">TensorflowUNetTiledInferencer</a> class not to inherit 
+<a href="./src/TensorflowUNetInferencer.py">TensorflowUNetInferencer</a></li>
+<br>
 This is an experimental Tiled Image Segmentation project for Skin-Cancer based on
 the <a href="https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-API">Tensorflow-Image-Segmentation-API</a>, and
 <a href="https://drive.google.com/file/d/1XKNJOfi2_n8ldmtgT_NIex4d0PTq92PR/view">
