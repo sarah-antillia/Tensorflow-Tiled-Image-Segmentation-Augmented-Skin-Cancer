@@ -3,8 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# 2024/03/20
+# 2024/06/10
 dataset/
+projects/*/Tiled-Skin-Cancer-0605/
 projects/*/*/models/
 projects/*/*/epoch_change_infer/
 projects/*/*/epoch_change_tiledinfer/

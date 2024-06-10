@@ -1,6 +1,9 @@
-<h2>Tensorflow-Tiled-Image-Segmentation-Augmented-Skin-Cancer (Updated: 2024/06/09)</h2>
+<h2>Tensorflow-Tiled-Image-Segmentation-Augmented-Skin-Cancer (Updated: 2024/06/10)</h2>
 <li>2024/06/09: Modified <a href="./src/TensorflowUNetTiledInferencer.py">TensorflowUNetTiledInferencer</a> class not to inherit 
 <a href="./src/TensorflowUNetInferencer.py">TensorflowUNetInferencer</a></li>
+<li>2023/06/10: Updated <a href="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/train_eval_infer.config">train_eval_infer.config</a>
+ to improve a segmetation accuracy.</li>
+
 <br>
 This is an experimental Tiled Image Segmentation project for Skin-Cancer based on
 the <a href="https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-API">Tensorflow-Image-Segmentation-API</a>, and
@@ -181,7 +184,7 @@ Please move to ./projects/Skin-Cancer and run the following bat file.<br>
 </pre>
 <pre>
 ; train_eval_infer.config
-; 2024/06/03 (C) antillia.com
+; 2024/06/10 (C) antillia.com
 
 [model]
 model          = "TensorflowUNet"
@@ -198,7 +201,7 @@ base_kernels   = (5,5)
 
 num_layers     = 8
 dropout_rate   = 0.05
-learning_rate  = 0.00004
+learning_rate  = 0.00007
 clipvalue      = 0.5
 ;dilation       = (2,2)
 dilation       = (1,1)
@@ -213,7 +216,7 @@ datasetclass   = "BaseImageMaskDataset"
 color_order    = "bgr"
 
 [train]
-epochs         = 20
+epochs         = 50
 batch_size     = 2
 steps_per_epoch  = 200
 validation_steps = 100
@@ -227,6 +230,7 @@ mask_datapath  = "../../../dataset/Tiled-Skin-Cancer/train/masks/"
 create_backup  = False
 
 learning_rate_reducer = True
+reducer_factor        = 0.2
 reducer_patience      = 4
 save_weights_only     = True
 
@@ -288,8 +292,8 @@ augmentation  = True
 vflip    = True
 hflip    = True
 rotation = True
-angles   = [90, 180, 270]
-shrinks  = [0.8]
+angles   = [60, 120, 180, 240, 300]
+shrinks  = [0.6, 0.8]
 shears   = [0.1]
 
 deformation = True
@@ -302,7 +306,7 @@ sigmoid  = 8
 [distortion]
 gaussian_filter_rsigma= 40
 gaussian_filter_sigma = 0.5
-distortions           = [0.03,]
+distortions           = [0.03, 0.04]
 </pre>
 
 In this configuration file above, we added the following parameters to enable <b>epoch_change_infer</b> and 
@@ -340,8 +344,8 @@ By using these callbacks, on every epoch_change, the inference and tile-inferenc
 <br>
 These inferred masks outputs on_epch_change will be helpful to examine the parameters for training of the configuration file.<br>
 <br>  
-The training process has stopped at epoch 20.<br><br>
-<img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/train_console_output_at_epoch_20.png" width="720" height="auto"><br>
+The training process has been stopped at epoch 32 by an early-stopping callback.<br><br>
+<img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/train_console_output_at_epoch_32.png" width="720" height="auto"><br>
 <br>
 <br>
 <a href="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/eval/train_metrics.csv">train_metrics.csv</a><br>
@@ -365,10 +369,16 @@ and run the following bat file to evaluate TensorflowUNet model for Skin-Cancer.
 python ../../../src/TensorflowUNetEvaluator.py ./train_eval_infer_aug.config
 </pre>
 Evaluation console output:<br>
-<img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/evaluate_console_output_at_epoch_20.png" width="720" height="auto">
+<img src="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/asset/evaluate_console_output_at_epoch_32.png" width="720" height="auto">
 <br><br>
 <a href="./projects/TensorflowSlightlyFlexibleUNet/Tiled-Skin-Cancer/evaluation.csv">evaluation.csv</a><br>
-The loss (bce_dice_loss) and accuracy for this test dataset are very bad as shown below.<br>
+The loss (bce_dice_loss) for this test dataset became slightly better than the former experiment as shown below.<br>
+This experiment evaluation result:<br>
+<pre>
+loss,0.4578
+binary_accuracy,0.7591
+</pre>
+The former experimant evaluation result:<br>
 <pre>
 loss,0.8785
 binary_accuracy,0.7546

@@ -1,2 +1,2 @@
-python ../../TensorflowSwinUNetModelInspector.py ./train_eval_infer.config
+python ../../TensorflowSwinUNetInspector.py ./train_eval_infer.config
 
